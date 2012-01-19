@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.files = [
     "lib/cyberstruction_wordpress.rb",
-    "lib/recipes/base.rb"
+    "lib/recipes/base.rb",
+    "lib/recipes/wordpress.rb"
   ]
   s.test_files = [
   ]
