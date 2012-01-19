@@ -4,7 +4,7 @@ namespace :wordpress do
     
     desc "Add a Wordpress Apache vhost configuration file" 
     task :add_apache_vhost do
-      wordpress_template_root = File.expand_path('../templates', __FILE__)
+      wordpress_template_root = File.expand_path('../../templates', __FILE__)
       template_name = "apache_vhost_wordpress_template.erb"
       template = File.read("#{wordpress_template_root}/#{template_name}")
       buffer = ERB.new(template).result(binding)
@@ -19,7 +19,7 @@ namespace :wordpress do
      
     desc "Add a wordpress mysql configuration file for production"
     task :config, :roles => [:db] do                         
-      wordpress_template_root = File.expand_path('../templates', __FILE__)
+      wordpress_template_root = File.expand_path('../../templates', __FILE__)
       template_name = "wp-config.php.erb"
       template = File.read("#{wordpress_template_root}/#{template_name}")
       buffer = ERB.new(template).result(binding)

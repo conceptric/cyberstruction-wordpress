@@ -4,4 +4,5 @@ namespace :deploy do
   task :cyberpress do
   	puts "Hello from the Cyberstruction WordPress gem"
   end
+  
 end

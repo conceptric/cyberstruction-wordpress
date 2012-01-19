@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{cyberstruction_wordpress}
-  s.version = "0.0"
+  s.version = "0.0.3"
   s.date = %q{2012-01-19}
   s.authors = ["James Whinfrey"]
   s.email = %q{james@conceptric.co.uk}
@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.files = [
     "lib/cyberstruction_wordpress.rb",
     "lib/recipes/base.rb",
+    "lib/recipes/variables.rb",
     "lib/recipes/wordpress.rb"
   ]
   s.test_files = [
