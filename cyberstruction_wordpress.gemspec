@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{cyberstruction_wordpress}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
   s.date = %q{2012-01-19}
   s.authors = ["James Whinfrey"]
   s.email = %q{james@conceptric.co.uk}
@@ -10,15 +10,10 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README.md"
   ]
+  s.files         = `git ls-files`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
-  s.files = [
-    "lib/cyberstruction_wordpress.rb",
-    "lib/recipes/base.rb",
-    "lib/recipes/variables.rb",
-    "lib/recipes/wordpress.rb"
-  ]
-  s.test_files = [
-  ]
   s.add_dependency "capistrano"
   s.add_dependency "capistrano-ext"
   s.add_dependency "cyberstruction_deploy"
