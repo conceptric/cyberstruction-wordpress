@@ -10,10 +10,15 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README.md"
   ]
-  s.files         = `git ls-files`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.require_paths = ["lib"]
+  s.require_paths = ["lib"]  
+  s.executables   = ["cyberpress"]
+  s.files         = [
+    "lib/cyberstruction_wordpress.rb",
+    "lib/recipes/base.rb",
+    "lib/recipes/variables.rb",
+    "lib/recipes/wordpress.rb"
+  ]
+  s.test_files    = []
   s.add_dependency "capistrano"
   s.add_dependency "capistrano-ext"
   s.add_dependency "cyberstruction_deploy"
