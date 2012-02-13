@@ -29,7 +29,7 @@ elsif ARGV.length > 1
   abort "Too many arguments; please specify only the directory to capify."
 end
 
-local_base = File.expand_path('../', __FILE__)
+local_base = File.expand_path('../../', __FILE__)
 base = ARGV.shift                 
 
 FileUtils.copy_file("#{local_base}/lib/templates/gitignore", 
