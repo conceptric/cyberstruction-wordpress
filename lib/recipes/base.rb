@@ -2,7 +2,7 @@ namespace :deploy do
   
   after "deploy:setup", "deploy:additional_directories"
   after "deploy:setup", "deploy:setup_database"
-  after "deploy:create_symlink",  "deploy:finalize_symlinks"
+  after "deploy:finalize_update",  "deploy:finalize_symlinks"
 
   # Create the additional directories
   task :additional_directories do

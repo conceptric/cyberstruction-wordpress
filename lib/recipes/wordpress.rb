@@ -28,7 +28,7 @@ namespace :wordpress do
     
     desc "Link the mysql configuration file"
     task :link_config, :roles => [:web] do
-      sudo "ln -nfs #{shared_path}/config/wp-config.php #{current_path}/public/wp-config.php"
+      sudo "ln -nfs #{shared_path}/config/wp-config.php #{release_path}/public/wp-config.php"
     end
                                     
   end     
@@ -50,8 +50,8 @@ namespace :wordpress do
 
   desc "Build the basic WordPress install in public"
   task :build do
-    run "cd #{deploy_to}/current && bundle exec rake RACK_ENV='production' build_wordpress"
-    run "cd #{deploy_to}/current && bundle exec rake RACK_ENV='production' add_trimmings"
+    run "cd #{release_path} && bundle exec rake RACK_ENV='production' build_wordpress"
+    run "cd #{release_path} && bundle exec rake RACK_ENV='production' add_trimmings"
     run "echo 'WordPress built'"
   end
 
@@ -66,8 +66,8 @@ namespace :wordpress do
   # Setup the links to the shared uploads
   task :link_to_uploads, :roles => [:web] do
     transaction do
-      sudo "ln -s #{shared_path}/uploads #{current_path}/public/wp-content/uploads"
-      sudo "ln -s #{shared_path}/uploads #{current_path}/public/uploads"
+      sudo "ln -s #{shared_path}/uploads #{release_path}/public/wp-content/uploads"
+      sudo "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
       set_uploads_links_permissions
     end
   end
@@ -75,26 +75,26 @@ namespace :wordpress do
   # Setup the links to the shared assets
   task :link_to_assets, :roles => [:web] do
     transaction do
-      sudo "ln -s #{shared_path}/assets/sitemap.xml #{current_path}/public/sitemap.xml"
-      sudo "ln -s #{shared_path}/assets/sitemap.xml.gz #{current_path}/public/sitemap.xml.gz"
+      sudo "ln -s #{shared_path}/assets/sitemap.xml #{release_path}/public/sitemap.xml"
+      sudo "ln -s #{shared_path}/assets/sitemap.xml.gz #{release_path}/public/sitemap.xml.gz"
       set_sitemap_permissions
     end
   end
 
   # Setup uploads link ownership and permissions
   task :set_uploads_links_permissions, :roles => [:web] do
-    sudo "chown -h  #{user}:#{user} #{current_path}/public/wp-content/uploads"
-    sudo "chown -h  #{user}:#{user} #{current_path}/public/uploads"
-    sudo "chmod 777 #{current_path}/public/wp-content/uploads"
-    sudo "chmod 777 #{current_path}/public/uploads" 
+    sudo "chown -h  #{user}:#{user} #{release_path}/public/wp-content/uploads"
+    sudo "chown -h  #{user}:#{user} #{release_path}/public/uploads"
+    sudo "chmod 777 #{release_path}/public/wp-content/uploads"
+    sudo "chmod 777 #{release_path}/public/uploads" 
   end
 
   # Setup sitemap file permissions
   task :set_sitemap_permissions, :roles => [:web] do
-    sudo "chown -h  #{user}:#{user} #{current_path}/public/sitemap.xml"
-    sudo "chmod 666 #{current_path}/public/sitemap.xml"
-    sudo "chown -h  #{user}:#{user} #{current_path}/public/sitemap.xml.gz"
-    sudo "chmod 666 #{current_path}/public/sitemap.xml.gz"
+    sudo "chown -h  #{user}:#{user} #{release_path}/public/sitemap.xml"
+    sudo "chmod 666 #{release_path}/public/sitemap.xml"
+    sudo "chown -h  #{user}:#{user} #{release_path}/public/sitemap.xml.gz"
+    sudo "chmod 666 #{release_path}/public/sitemap.xml.gz"
   end
   
 end
