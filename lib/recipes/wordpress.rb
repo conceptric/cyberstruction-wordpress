@@ -38,8 +38,6 @@ namespace :wordpress do
     sudo "mkdir #{shared_path}/uploads"
     sudo "chmod 777 #{shared_path}/uploads"
     sudo "mkdir #{shared_path}/assets"
-    sudo "touch #{shared_path}/assets/sitemap.xml"
-    sudo "touch #{shared_path}/assets/sitemap.xml.gz"
     sudo "chmod -R 777 #{shared_path}/assets"
   end
 
@@ -60,7 +58,6 @@ namespace :wordpress do
     build 
     mysql.link_config
     link_to_uploads
-    link_to_assets
   end
 
   # Setup the links to the shared uploads
@@ -72,15 +69,6 @@ namespace :wordpress do
     end
   end
 
-  # Setup the links to the shared assets
-  task :link_to_assets, :roles => [:web] do
-    transaction do
-      sudo "ln -s #{shared_path}/assets/sitemap.xml #{release_path}/public/sitemap.xml"
-      sudo "ln -s #{shared_path}/assets/sitemap.xml.gz #{release_path}/public/sitemap.xml.gz"
-      set_sitemap_permissions
-    end
-  end
-
   # Setup uploads link ownership and permissions
   task :set_uploads_links_permissions, :roles => [:web] do
     sudo "chown -h  #{user}:#{user} #{release_path}/public/wp-content/uploads"
@@ -89,12 +77,4 @@ namespace :wordpress do
     sudo "chmod 777 #{release_path}/public/uploads" 
   end
 
-  # Setup sitemap file permissions
-  task :set_sitemap_permissions, :roles => [:web] do
-    sudo "chown -h  #{user}:#{user} #{release_path}/public/sitemap.xml"
-    sudo "chmod 666 #{release_path}/public/sitemap.xml"
-    sudo "chown -h  #{user}:#{user} #{release_path}/public/sitemap.xml.gz"
-    sudo "chmod 666 #{release_path}/public/sitemap.xml.gz"
-  end
-  
 end
