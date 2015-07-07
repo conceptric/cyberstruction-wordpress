@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = %q{cyberstruction_wordpress}
-  s.version = "0.3"
-  s.date = %q{2012-01-19}
+  s.version = "0.4.0"
+  s.date = %q{2015-07-07}
   s.authors = ["James Whinfrey"]
   s.email = %q{james@conceptric.co.uk}
   s.summary = %q{cyberstruction_wordpress is a set of capistrano tasks for wordpress deployment to a cyberstruction server}  
